@@ -15,3 +15,31 @@ Language: Русский | [English](./README.md)
 Вообще тема исследования и создания pkg-файлов это отдельная тема, которая, увы, не документирована Apple (я не нашел у них документации об этом).
 
 [Здесь](./scripts/) только примеры preinstall и postinstall и некоторых других скриптов из pkg-файлов.
+
+## Информация о pkg
+
+### Стандартные аргументы в preinstall/postinstall
+
+При запуске preinstall/postinstall скриптов в них передаются некоторые данные в виде аргументов, а также есть некоторые стандартные именованные переменные:
+
+| Argument | Description |
+|-|-|
+|`$0`| Полный путь к текущему скрипту |
+|`$1`| Полный путь к установочному пакету, который обрабатывает приложение «Установщик». Например: /Volumes/Users/Vikrams/Desktop/TestPkg.pkg |
+|`$2`| Полный путь к месту установки. Например: /Applications |
+|`$3`| Полный путь к корню диска, выбранного для установки. Например: /Volumes/Macintosh HD |
+|`$4`| Корневой каталог запущенной системы: / |
+|`$SCRIPT_NAME`| Имя файла исполняемого файла операции. Например: preinstall |
+|`$PACKAGE_PATH`| Тоже самое что и `$1` |
+|`$INSTALLER_TEMP`| рабочий каталог, используемый установщиком для размещения временных рабочих файлов. Например: /private/tmp/.vikrams.pkg.234.install |
+| `$COMMAND_LINE_INSTALL` | Переменная установлена, если установка выполняется через `/usr/sbin/installer` |
+
+
+Источники информации:
+- https://macinstallers.blogspot.com/2012/07/scripting-in-installer-packages.html
+- http://s.sudre.free.fr/Stuff/PackageMaker_Howto.html
+- https://cpb-us-e1.wpmucdn.com/sites.psu.edu/dist/4/24696/files/2019/07/psumac2019-345-Installer-Package-Scripting-Making-your-deployments-easier-one-at-a-time.pdf
+- https://bpb-us-e1.wpmucdn.com/sites.psu.edu/dist/4/24696/files/2016/07/psumac2016-58-PSUMacAdmins2016-Intro-to-Packaging.pdf?bid=24696
+- https://forum.qt.io/topic/60991/understanding-qt-and-mac-pkg-setups/3
+- GUI в приложении "Suspicious package"
+
